@@ -10,8 +10,14 @@ echo "Deployment started ..."
 # Pull the latest version of the app
 git pull origin production
 
+#Copy .env.example to make .env
+cp .env.example .env
+
 # Install composer dependencies
 composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+#Generate App key 
+php artisan key:generate
 
 # Clear the old cache
 php artisan clear-compiled
